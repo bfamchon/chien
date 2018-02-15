@@ -1,6 +1,6 @@
-defmodule ChatterWeb.RoomChannel do
-    use ChatterWeb, :channel
-    alias ChatterWeb.Presence
+defmodule ChienWeb.RoomChannel do
+    use ChienWeb, :channel
+    alias ChienWeb.Presence
   
     def join("room:lobby", _, socket) do
       send self(), :after_join
