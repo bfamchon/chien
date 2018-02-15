@@ -50,3 +50,25 @@ room.on('presence_diff', diff => {
 });
 
 room.join();
+
+let messageInput = document.getElementById('NewMessage');
+messageInput.addEventListener('keypress', e => {
+  if (e.keyCode == 13 && messageInput.value != '') {
+    room.push('message:new', messageInput.value);
+    messageInput.value = '';
+  }
+});
+
+let messageList = document.getElementById('MessageList');
+let renderMessage = message => {
+  let messageElement = document.createElement('li');
+  messageElement.innerHTML = `
+    <b>${message.user}</b>
+    <i>${formatedTimestamp(message.timestamp)}</i>
+    <p>${message.body}</p>
+  `;
+  messageList.appendChild(messageElement);
+  messageList.scrollTop = messageList.scrollHeight;
+};
+
+room.on('message:new', message => renderMessage(message));
