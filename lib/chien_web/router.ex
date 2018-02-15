@@ -15,7 +15,7 @@ defmodule ChienWeb.Router do
 
   scope "/", ChienWeb do
     pipe_through :browser # Use the default browser stack
-
+    resources "/users", UserController
     get "/", PageController, :index
   end
 
