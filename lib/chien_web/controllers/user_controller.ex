@@ -12,5 +12,10 @@ defmodule ChienWeb.UserController do
       user = Repo.get!(User, id)
       render(conn, "show.html", user: user)
     end
+    
+    def new(conn, _params) do
+      changeset = User.changeset(%User{}, %{})
+      render(conn, "new.html", changeset: changeset)
+    end
 
 end
